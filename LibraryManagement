@@ -199,13 +199,19 @@ class LibraryManagementSystem {
 
     // Search books
     public void searchBooks(String title, String author, String genre) {
+        boolean found = false;  // To track if any book is found
         for (int i = 0; i < bookCount; i++) {
             boolean matches = (title == null || books[i].getTitle().toLowerCase().contains(title.toLowerCase())) &&
-                    (author == null || books[i].getAuthor().toLowerCase().contains(author.toLowerCase())) &&
-                    (genre == null || books[i].getGenre().toLowerCase().contains(genre.toLowerCase()));
+                              (author == null || books[i].getAuthor().toLowerCase().contains(author.toLowerCase())) &&
+                              (genre == null || books[i].getGenre().toLowerCase().contains(genre.toLowerCase()));
             if (matches) {
                 System.out.println(books[i]);
+                found = true;  // Book found
             }
+        }
+
+        if (!found) {
+            System.out.println("Book is not available.");
         }
     }
 
@@ -285,10 +291,7 @@ class LibraryManagementSystem {
                     System.out.println("Exiting the library system.");
                     scanner.close();
                     return;
-
-                default:
-                    System.out.println("Invalid choice. Try again.");
             }
         }
-    }
+   }
 }
